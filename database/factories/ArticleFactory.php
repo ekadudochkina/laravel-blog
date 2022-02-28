@@ -15,10 +15,8 @@ class ArticleFactory extends Factory
     {
         return [
             'title' => $this->faker->realText(rand(20, 35)),
-            'text' => $this->faker->realText(rand(200, 300)),
+            'text' => $this->faker->realText(rand(1000, 2000)),
             'slug' => $this->faker->slug,
-            'likes' => 0,
-            'views' => 0,
             'created_at' => $this->faker->dateTimeBetween('-60 days', '-30 days'),
             'updated_at' => $this->faker->dateTimeBetween('-20 days', '-1 days'),
         ];

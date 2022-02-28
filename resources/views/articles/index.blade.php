@@ -1,22 +1,22 @@
 @extends("layouts.main-layout")
 
 @section("content")
-<main role="main">
+<main role="main" class="main">
     <div class="album py-5 bg-light">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 mb-5">
+                    <h4 class="d-inline-block"><a href="{{ url('/articles') }}"><span class="badge bg-dark bg-secondary">Все</span></a></h4>
                     @foreach($tags as $tag)
-                        <h4 class="d-inline-block"><a href="{{ url('/articles/'.$tag->slug) }}"><span class="badge bg-dark bg-secondary">{{$tag->title}}</span></a></h4>
+                        <h4 class="d-inline-block"><a href="{{ url('/articles/?tag='.$tag->slug) }}"><span class="badge bg-dark bg-secondary">{{$tag->title}}</span></a></h4>
                     @endforeach
                 </div>
 
                 @foreach($articles as $article)
-                <div class="col-md-4">
+                <div class="col-md-4 article">
+                    <div id="articleId" class="d-none">{{$article->id}}</div>
                     <div class="card mb-4 box-shadow">
-                        <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;"
-                             src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22348%22%20height%3D%22225%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20348%20225%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17f317f54de%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A17pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17f317f54de%22%3E%3Crect%20width%3D%22348%22%20height%3D%22225%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22116.7109375%22%20y%3D%22120.15%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"
-                             data-holder-rendered="true">
+                        <img class="card-img-top" src="https://via.placeholder.com/500x300?text=Image">
                         <div class="card-body">
                             <p class="card-title">{{$article->title}}</p>
 
@@ -24,16 +24,46 @@
                                 <span class="badge bg-dark bg-secondary mb-3">{{$tag->title}}</span>
                             @endforeach
 
-                            <p class="card-text">{{mb_strimwidth($article->text, 0, 100, "...")}}</p>
+                            <p class="card-text">{{mb_strimwidth($article->text, 0, 96, "...")}}</p>
+
+                            <div class="text-start mb-3 article-counters">
+                                    <span class="pe-3 views">
+                                    <span class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#000" class="bi bi-eye" viewBox="0 0 16 16">
+                                        <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"></path>
+                                        <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"></path>
+                                        </svg>
+                                    </span>
+                                    <span class="number">{{$article->number_of_views()}}</span>
+                                    </span>
+
+                                <span class="likes cursor-pointer">
+                                    <span class="icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#000" class="bi bi-heart" viewBox="0 0 16 16">
+                                        <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"></path>
+                                    </svg>
+                                    </span>
+                                    <span class="number">{{$article->number_of_likes()}}</span>
+                                    <span class="like-error error ps-2 small"></span>
+                                    </span>
+                            </div>
+
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Читать</button>
+                                    <a href="{{ url('/articles/'.$article->slug) }}"><button type="button" class="btn btn-sm btn-outline-secondary">Читать</button></a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 @endforeach
+
+                <div class="col-md-12 mt-3">
+                    {{-- Pagination --}}
+                    <div class="d-flex justify-content-center">
+                        {!! $articles->appends(request()->input())->links() !!}
+                    </div>
+                </div>
             </div>
         </div>
     </div>

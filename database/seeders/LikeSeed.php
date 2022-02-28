@@ -6,7 +6,7 @@ use App\Models\Article;
 use Illuminate\Database\Seeder;
 use DB;
 
-class ArticleTagSeed extends Seeder
+class LikeSeed extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,18 +17,18 @@ class ArticleTagSeed extends Seeder
     {
         $articles = Article::all();
         foreach ($articles as $article) {
-            $tries = rand(1, 3);
+            $tries = rand(1, 10);
             for ($i = 0; $i < $tries; $i++) {
-                $this->generateTags($article["id"]);
+                $this->generateLikes($article["id"]);
             }
         }
     }
 
-    private function generateTags($id)
+    private function generateLikes($id)
     {
-        DB::table('article_tags')->insert([
+        DB::table('likes')->insert([
             'article_id' => $id,
-            'tag_id' => rand(1, 6),
+            'hash' => md5(rand(0,100000)),
         ]);
     }
 }

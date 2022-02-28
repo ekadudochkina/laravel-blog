@@ -6,3 +6,41 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+.error{
+    color: red;
+}
+.hide{
+    display: none;
+}
+.cursor-pointer{
+    cursor: pointer;
+}
+.btn-check:checked + .btn-dark:focus, .btn-check:active + .btn-dark:focus, .btn-dark:active:focus, .btn-dark.active:focus, .show > .btn-dark.dropdown-toggle:focus {
+    box-shadow: none;
+}
+.btn-check:focus + .btn-outline-secondary, .btn-outline-secondary:focus {
+    box-shadow: none;
+}
+.pagination{
+    .page-item{
+        .page-link{
+            color: black;
+        }
+        &.active{
+            .page-link{
+                background-color: #343a40;
+                border-color: #343a40;
+                color: white;
+            }
+        }
+    }
+}
+
+.article {
+    #comment-form {
+        .error-wrap {
+            height:24px;
+        }
+    }
+}

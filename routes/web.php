@@ -13,9 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', "App\Http\Controllers\HomeController@index");
+Route::get('/articles/', "App\Http\Controllers\ArticlesController@index");
+Route::get('/articles/{slug}', "App\Http\Controllers\ArticlesController@show");
 
-Route::get('/articles/{slug?}', "App\Http\Controllers\ArticlesController@index");
+
+Route::post('/api/increaseLike/{id}', "App\Http\Controllers\ApiController@increaseLike");
+Route::post('/api/increaseViews/{id}', "App\Http\Controllers\ApiController@increaseViews");
+Route::post('/api/addComment/{id}', "App\Http\Controllers\ApiController@addComment");
 

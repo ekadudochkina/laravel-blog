@@ -6,7 +6,7 @@ use App\Models\Article;
 use Illuminate\Database\Seeder;
 use DB;
 
-class ArticleTagSeed extends Seeder
+class ViewsSeed extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,18 +17,17 @@ class ArticleTagSeed extends Seeder
     {
         $articles = Article::all();
         foreach ($articles as $article) {
-            $tries = rand(1, 3);
+            $tries = rand(1, 30);
             for ($i = 0; $i < $tries; $i++) {
-                $this->generateTags($article["id"]);
+                $this->generateViews($article["id"]);
             }
         }
     }
 
-    private function generateTags($id)
+    private function generateViews($id)
     {
-        DB::table('article_tags')->insert([
+        DB::table('views')->insert([
             'article_id' => $id,
-            'tag_id' => rand(1, 6),
         ]);
     }
 }

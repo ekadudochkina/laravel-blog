@@ -6,11 +6,10 @@ use Illuminate\Http\Request;
 
 class ArticlesController extends Controller
 {
-    public function index($tag = null){
+    public function index(Request $request){
+        $tag = $request->input('tag');
         $tags = Tag::all();
-
         $query = Article::query();
-
         if ($tag)
         {
             $query->whereHas('tags', function ($q) use ($tag) {
@@ -18,8 +17,13 @@ class ArticlesController extends Controller
             });
         }
 
-        $articles = $query->get();
+        $query->latest();
+        $articles = $query->paginate(9);
+        return view("articles.index",compact("articles","tags","tag"));
+    }
 
-        return view("articles.index",compact("articles","tags"));
+    public function show($slug){
+        $article = Article::where('slug', $slug)->first();
+        return view("articles.show",compact("article"));
     }
 }

@@ -18,11 +18,11 @@
             </a>
             <div class=" d-inline-block" id="navbarNav">
                 <ul class="navbar-nav d-inline-block">
-                    <li class="nav-item active d-inline-block px-4">
-                        <a class="nav-link" href="#">Главная</a>
+                    <li class="nav-item d-inline-block px-4">
+                        <a class="nav-link @if(Request::segment(1) == '') active @endif" href="{{ url('/') }}">Главная</a>
                     </li>
                     <li class="nav-item d-inline-block">
-                        <a class="nav-link d-inline-block" href="#">Новости</a>
+                        <a class="nav-link d-inline-block @if(Request::segment(1) == 'articles') active @endif" href="{{ url('/articles') }}">Новости</a>
                     </li>
                 </ul>
             </div>
