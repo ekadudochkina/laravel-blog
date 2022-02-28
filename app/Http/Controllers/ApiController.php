@@ -49,7 +49,7 @@ class ApiController extends BaseApiController
         $model = new View();
         $model->article_id = $id;
         if (!$model->save()) {
-            $this->respondWithError("Не удается сохранить лайк");
+            $this->respondWithError("Не удается сохранить просмотр");
         }
 
         $count = View::where('article_id', $id)->count();

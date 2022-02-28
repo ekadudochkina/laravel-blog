@@ -50,7 +50,7 @@ class AddCommentJob implements ShouldQueue
      */
     public function handle()
     {
-        sleep(10);
+        sleep(600);
         $model = new Comment();
         $model->article_id = $this->details["articleId"];
         $model->subject = $this->details["subject"];

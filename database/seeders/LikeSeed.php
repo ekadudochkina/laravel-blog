@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Article;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use DB;
 
@@ -29,6 +30,8 @@ class LikeSeed extends Seeder
         DB::table('likes')->insert([
             'article_id' => $id,
             'hash' => md5(rand(0,100000)),
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
     }
 }
