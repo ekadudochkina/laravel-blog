@@ -11,7 +11,7 @@ php artisan key:generate (создаем ключ) <br>
 php artisan migrate (запускаем миграции) <br>
 php artisan db:seed (запускаем сиды) <br>
 php artisan serve (запускаем локальный сервер) <br>
-php artisan queue:work (для работы очередей)
+php artisan queue:work --daemon (для работы очередей)
 
 ## Добавление коментариев
 
