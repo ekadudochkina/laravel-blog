@@ -10,6 +10,11 @@ class Like extends Model
 {
     use HasFactory;
 
+    /**
+     * Создает хэш
+     * @param Request $request
+     * @return false|string
+     */
     public function createHash(Request $request){
 
         $ua = $request->header('User-Agent');

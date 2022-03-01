@@ -13,6 +13,13 @@ use DB;
 
 class ApiController extends BaseApiController
 {
+    /**
+     * Увеличивает лайки у статьи
+     *
+     * @param Request $request
+     * @param $id
+     * @return mixed
+     */
     public function increaseLike(Request $request, $id)
     {
         $article = Article::find($id);
@@ -40,6 +47,11 @@ class ApiController extends BaseApiController
         return $this->respond(["count" => $count]);
     }
 
+    /**
+     * Увеличивает просмотры у статьи
+     * @param $id
+     * @return mixed
+     */
     public function increaseViews($id)
     {
         $article = Article::find($id);
@@ -56,6 +68,12 @@ class ApiController extends BaseApiController
         return $this->respond(["count" => $count]);
     }
 
+    /**
+     * Добавляет комментарий у статьи
+     * @param AddCommentRequest $request
+     * @param $id
+     * @return mixed
+     */
     public function addComment(AddCommentRequest $request, $id)
     {
         $article = Article::find($id);

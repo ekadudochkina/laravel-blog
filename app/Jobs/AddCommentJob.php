@@ -44,7 +44,7 @@ class AddCommentJob implements ShouldQueue
     }
 
     /**
-     * Execute the job.
+     * Добавляет комментарий для статьи
      *
      * @return void
      */

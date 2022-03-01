@@ -9,6 +9,12 @@ use Response;
  */
 class BaseApiController extends Controller
 {
+    /**
+     * Ответ с ошибкой
+     * @param $msg
+     * @param int $status
+     * @return mixed
+     */
     function respondWithError($msg, $status = 400)
     {
         $results = [];
@@ -17,6 +23,12 @@ class BaseApiController extends Controller
         return Response::json($results, $status);
     }
 
+    /**
+     * Успешный ответ
+     * @param $data
+     * @param int $status
+     * @return mixed
+     */
     function respond($data, $status = 200)
     {
         return Response::json($data, $status);
