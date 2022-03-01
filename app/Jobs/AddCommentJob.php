@@ -15,6 +15,7 @@ class AddCommentJob implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected $details;
+    public $timeout = 0;
 
     /**
      * Количество попыток выполнения задания.
